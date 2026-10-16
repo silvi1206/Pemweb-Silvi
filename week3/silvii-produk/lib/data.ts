@@ -1,0 +1,29 @@
+import type { Item } from "./tipe";
+export const daftarItem: Item[] = [
+ {
+ id: 1,
+ judul: "Panel Surya",
+ kategori: "energi",
+ deskripsi: "Pemantauan produksi listrik dari panel surya secara real-time.",
+ tersedia: true,
+ gambar: "panel-surya.jpg"
+ },
+ 
+{
+id: 2,
+judul: "Kincir Angin",
+kategori: "lingkungan",
+deskripsi: "Pemantauan produksi listrik dari kincir angin secara real-time.",
+tersedia: true,
+gambar: "kincir-angin.jpg"
+},
+
+{
+id: 3,
+judul: "Sistem Pendingin",
+kategori: "kampus",
+deskripsi: "Pemantauan efisiensi sistem pendingin di kampus.",
+tersedia: false,
+gambar: "sistem-pendingin.jpg"
+}
+];
