@@ -1,0 +1,18 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model Analysis {
+  id             String   @id @default(uuid()) @db.Uuid
+  url            String
+  riskScore      Int
+  isSafe         Boolean
+  recommendation String
+  sha256         String
+  hmac           String
+  createdAt      DateTime @default(now())
+}
