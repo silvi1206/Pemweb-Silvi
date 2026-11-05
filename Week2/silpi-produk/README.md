@@ -1,36 +1,85 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# CyberShield
 
-## Getting Started
+CyberShield adalah aplikasi web untuk melakukan pemeriksaan awal terhadap URL atau tautan yang mencurigakan, khususnya tautan yang memiliki indikasi phishing.
 
-First, run the development server:
+Aplikasi ini dikembangkan sebagai prototype untuk mata kuliah Pengembangan Aplikasi Web (PWA). Analisis pada versi ini menggunakan pendekatan rule-based dan bertujuan sebagai edukasi awal bagi pengguna sebelum mengakses tautan yang tidak dikenal.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## Tujuan
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+CyberShield dibuat untuk membantu pengguna:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- Mengenali ciri-ciri URL yang mencurigakan.
+- Melakukan pemeriksaan awal terhadap sebuah URL.
+- Memahami tingkat risiko berdasarkan beberapa indikator.
+- Mendapatkan rekomendasi keamanan sebelum membuka tautan.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Target Pengguna
 
-## Learn More
+CyberShield ditujukan untuk pengguna umum yang ingin melakukan pemeriksaan awal terhadap tautan yang diterima melalui internet, media sosial, pesan instan, maupun sumber lainnya.
 
-To learn more about Next.js, take a look at the following resources:
+## Fitur Utama
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### 1. URL Security Analyzer
+Pengguna dapat memasukkan URL untuk dianalisis berdasarkan beberapa indikator keamanan.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+### 2. Risk Score
+Sistem memberikan skor risiko berdasarkan hasil pemeriksaan URL.
 
-## Deploy on Vercel
+### 3. Security Indicators
+Analisis menggunakan beberapa indikator, antara lain:
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- Penggunaan HTTPS.
+- Domain atau TLD yang mencurigakan.
+- Kata kunci yang umum ditemukan pada tautan phishing.
+- Ekstensi file yang berpotensi berbahaya.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+### 4. Recommendation
+Setelah analisis selesai, sistem memberikan hasil dan rekomendasi keamanan kepada pengguna.
+
+### 5. Sample URL
+Tersedia beberapa URL contoh untuk membantu pengguna mencoba fitur analisis.
+
+## Halaman
+
+CyberShield memiliki tiga halaman utama:
+
+- `/` — Halaman utama dan pengenalan CyberShield.
+- `/analyze` — Halaman untuk melakukan analisis URL.
+- `/about` — Informasi mengenai CyberShield dan cara kerja analisis.
+
+## Teknologi
+
+- Next.js
+- React
+- TypeScript
+- Tailwind CSS
+- ESLint
+
+## Struktur Project
+
+```text
+app/
+├── about/
+│   └── page.tsx
+├── analyze/
+│   └── page.tsx
+├── page.tsx
+├── layout.tsx
+└── globals.css
+
+components/
+├── AnalysisResult.tsx
+├── FeatureCard.tsx
+├── Footer.tsx
+├── HeroSection.tsx
+├── Navbar.tsx
+├── RiskScore.tsx
+├── SampleUrl.tsx
+├── SecurityIndicator.tsx
+└── UrlAnalyzer.tsx
+
+lib/
+└── url-analyzer.ts
+
+types/
+└── analysis.ts
