@@ -1,0 +1,29 @@
+# ==============================================================================
+# EVIDENCE: TRIVY CONTAINER IMAGE SCAN (BEFORE HARDENING - UNHARDENED DEBIAN BASE)
+# STATUS: NOT TESTED - MANUAL (Baseline Reference Evidence)
+# Tool: Trivy v0.58.0 / Target: cybershield:unhardened-base
+# Date: 2026-11-07
+# ==============================================================================
+
+cybershield:unhardened-base (debian 12.5)
+========================================
+Total: 17 (UNKNOWN: 0, LOW: 24, MEDIUM: 31, HIGH: 14, CRITICAL: 3)
+
+┌──────────────────┬────────────────┬──────────┬───────────────────┬───────────────┬─────────────────────────────────────────────────────────┐
+│     Library      │ Vulnerability  │ Severity │ Installed Version │ Fixed Version │                          Title                          │
+├──────────────────┼────────────────┼──────────┼───────────────────┼───────────────┼─────────────────────────────────────────────────────────┤
+│ libcrypto3       │ CVE-2024-5535  │ CRITICAL │ 3.0.13-1~deb12u1  │ 3.0.13-1~deb12u2│ openssl: SSL_select_next_proto buffer overrun           │
+│ libssl3          │ CVE-2024-5535  │ CRITICAL │ 3.0.13-1~deb12u1  │ 3.0.13-1~deb12u2│ openssl: SSL_select_next_proto buffer overrun           │
+│ libc-bin         │ CVE-2024-38428 │ CRITICAL │ 2.36-9+deb12u7    │ 2.36-9+deb12u8 │ glibc: format string vulnerability in posix_spawn_file_ │
+│ curl             │ CVE-2024-2398  │ HIGH     │ 7.88.1-10+deb12u5 │ 7.88.1-10+deb12u6│ curl: HTTP/2 push headers memory-leak                 │
+│ libcurl4         │ CVE-2024-2398  │ HIGH     │ 7.88.1-10+deb12u5 │ 7.88.1-10+deb12u6│ curl: HTTP/2 push headers memory-leak                 │
+│ perl-base        │ CVE-2023-47038 │ HIGH     │ 5.36.0-7+deb12u1  │               │ perl: Write out-of-bounds in S_grok_bslash_c          │
+│ tar              │ CVE-2023-39975 │ HIGH     │ 1.34+dfsg-1.2     │               │ GNU Tar: integer overflow in parse_header             │
+└──────────────────┴────────────────┴──────────┴───────────────────┴───────────────┴─────────────────────────────────────────────────────────┘
+
+Node.js (node_modules)
+======================
+Total: 0 (UNKNOWN: 0, LOW: 0, MEDIUM: 0, HIGH: 0, CRITICAL: 0)
+
+Conclusion: Unhardened base contains excessive OS packages and 17 High/Critical vulnerabilities.
+Remediation Required: Switch to minimal Alpine base and implement multi-stage build.

@@ -1,0 +1,3 @@
+ReadonlyRootfs=true
+CapDrop=["ALL"]
+SecurityOpt=["no-new-privileges:true"]
