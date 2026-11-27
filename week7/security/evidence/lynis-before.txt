@@ -1,0 +1,21 @@
+================================================================================
+BUKTI AUDIT LYNIS SEBELUM HARDENING (BASELINE)
+STATUS: NOT TESTED - MANUAL (Menunggu Eksekusi Manual oleh Pemilik Project)
+================================================================================
+
+Target Mesin: Virtual Machine Produksi CyberShield
+Waktu Audit: [Akan diisi saat pengujian manual]
+Auditor: Pemilik Project
+
+Panduan Perintah Eksekusi:
+  sudo lynis audit system --quick > security/evidence/lynis-before.txt
+
+Ringkasan Indeks Kepatuhan Awal:
+  - Hardening Index Target Awal: Belum dieksekusi
+  - Tests Performed: Belum dieksekusi
+  - Warnings Found: Belum dieksekusi
+  - Suggestions Found: Belum dieksekusi
+
+Catatan:
+File ini akan digantikan dengan log keluaran mentah aktual dari lynis
+sebelum langkah hardening SSH dan OS dilakukan.

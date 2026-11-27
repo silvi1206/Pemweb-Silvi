@@ -1,0 +1,91 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="540" viewBox="0 0 960 540">
+  <rect width="960" height="540" fill="#1e1e1e" rx="8"/>
+  <!-- Title bar -->
+  <rect width="960" height="32" fill="#323233" rx="8"/>
+  <circle cx="18" cy="16" r="6" fill="#ff5f56"/>
+  <circle cx="38" cy="16" r="6" fill="#ffbd2e"/>
+  <circle cx="58" cy="16" r="6" fill="#27c93f"/>
+  <text x="480" y="21" font-family="Consolas, monospace" font-size="13" fill="#cccccc" text-anchor="middle">Visual Studio Code — Debugging: Next.js: debug server-side (--inspect)</text>
+
+  <!-- Left Sidebar: Run and Debug (Variables & Call Stack) -->
+  <rect x="0" y="32" width="330" height="480" fill="#252526"/>
+  <rect x="0" y="32" width="330" height="26" fill="#333333"/>
+  <text x="12" y="49" font-family="Segoe UI, sans-serif" font-size="11" font-weight="bold" fill="#ffffff">RUN AND DEBUG: VARIABLES</text>
+
+  <text x="16" y="75" font-family="Consolas, monospace" font-size="12" fill="#569cd6">▼ Local</text>
+  <text x="28" y="96" font-family="Consolas, monospace" font-size="11" fill="#9cdcfe">auth:</text>
+  <text x="72" y="96" font-family="Consolas, monospace" font-size="11" fill="#ce9178">{ role: "admin", userId: "84b1e7c0-..." }</text>
+  <text x="28" y="116" font-family="Consolas, monospace" font-size="11" fill="#9cdcfe">whereClause:</text>
+  <text x="116" y="116" font-family="Consolas, monospace" font-size="11" fill="#d4d4d4">{}</text>
+  <text x="28" y="136" font-family="Consolas, monospace" font-size="11" fill="#9cdcfe">records:</text>
+  <text x="90" y="136" font-family="Consolas, monospace" font-size="11" fill="#4ec9b0">Array(4)</text>
+  <text x="42" y="156" font-family="Consolas, monospace" font-size="11" fill="#9cdcfe">0:</text>
+  <text x="64" y="156" font-family="Consolas, monospace" font-size="11" fill="#ce9178">{ id: "4c92a1...", url: "https://klikbca.com/login", isSafe: true }</text>
+  <text x="42" y="174" font-family="Consolas, monospace" font-size="11" fill="#9cdcfe">1:</text>
+  <text x="64" y="174" font-family="Consolas, monospace" font-size="11" fill="#ce9178">{ id: "7f31b8...", url: "http://bca-klaim-hadiah...", isSafe: false }</text>
+  <text x="42" y="192" font-family="Consolas, monospace" font-size="11" fill="#9cdcfe">2:</text>
+  <text x="64" y="192" font-family="Consolas, monospace" font-size="11" fill="#ce9178">{ id: "9e14d2...", url: "http://surat-undangan...", isSafe: false }</text>
+  <text x="42" y="210" font-family="Consolas, monospace" font-size="11" fill="#9cdcfe">3:</text>
+  <text x="64" y="210" font-family="Consolas, monospace" font-size="11" fill="#ce9178">{ id: "b208f5...", url: "https://portal-akademik...", isSafe: true }</text>
+
+  <!-- Watch section -->
+  <rect x="0" y="230" width="330" height="24" fill="#333333"/>
+  <text x="12" y="246" font-family="Segoe UI, sans-serif" font-size="11" font-weight="bold" fill="#ffffff">WATCH</text>
+  <text x="16" y="270" font-family="Consolas, monospace" font-size="11" fill="#9cdcfe">records.length:</text>
+  <text x="130" y="270" font-family="Consolas, monospace" font-size="11" fill="#b5cea8">4</text>
+  <text x="16" y="288" font-family="Consolas, monospace" font-size="11" fill="#9cdcfe">records[0].indicators.length:</text>
+  <text x="225" y="288" font-family="Consolas, monospace" font-size="11" fill="#b5cea8">4</text>
+
+  <!-- Call Stack section -->
+  <rect x="0" y="310" width="330" height="24" fill="#333333"/>
+  <text x="12" y="326" font-family="Segoe UI, sans-serif" font-size="11" font-weight="bold" fill="#ffffff">CALL STACK</text>
+  <rect x="0" y="338" width="330" height="22" fill="#37373d"/>
+  <text x="16" y="353" font-family="Consolas, monospace" font-size="11" fill="#dcdcaa">getAnalysesAction</text>
+  <text x="200" y="353" font-family="Consolas, monospace" font-size="10" fill="#858585">app/actions/analysis.ts:139</text>
+  <text x="16" y="373" font-family="Consolas, monospace" font-size="11" fill="#cccccc">executeAction</text>
+  <text x="200" y="373" font-family="Consolas, monospace" font-size="10" fill="#858585">next/dist/server/action-handler.js</text>
+  <text x="16" y="393" font-family="Consolas, monospace" font-size="11" fill="#cccccc">processTicksAndRejections</text>
+  <text x="200" y="393" font-family="Consolas, monospace" font-size="10" fill="#858585">node:internal/process/task_queues</text>
+
+  <!-- Editor Pane -->
+  <rect x="331" y="32" width="629" height="295" fill="#1e1e1e"/>
+  <rect x="331" y="32" width="629" height="26" fill="#2d2d2d"/>
+  <text x="345" y="49" font-family="Consolas, monospace" font-size="12" fill="#ffffff">app/actions/analysis.ts</text>
+
+  <!-- Code lines -->
+  <text x="345" y="80" font-family="Consolas, monospace" font-size="12" fill="#858585">137</text>
+  <text x="385" y="80" font-family="Consolas, monospace" font-size="12" fill="#d4d4d4">const records = await prisma.analysis.findMany({</text>
+  <text x="345" y="100" font-family="Consolas, monospace" font-size="12" fill="#858585">138</text>
+  <text x="400" y="100" font-family="Consolas, monospace" font-size="12" fill="#9cdcfe">where:</text>
+  <text x="450" y="100" font-family="Consolas, monospace" font-size="12" fill="#d4d4d4">whereClause,</text>
+
+  <!-- Active Breakpoint Line -->
+  <rect x="331" y="110" width="629" height="24" fill="#4b4b18"/>
+  <circle cx="339" cy="122" r="5" fill="#e51400"/>
+  <text x="348" y="126" font-family="Consolas, monospace" font-size="12" fill="#ffffff">153</text>
+  <text x="385" y="126" font-family="Consolas, monospace" font-size="12" fill="#dcdcaa">const processedRecords = await Promise.all(</text>
+
+  <text x="345" y="150" font-family="Consolas, monospace" font-size="12" fill="#858585">154</text>
+  <text x="400" y="150" font-family="Consolas, monospace" font-size="12" fill="#d4d4d4">records.map(async (record) =&gt; {</text>
+  <text x="345" y="170" font-family="Consolas, monospace" font-size="12" fill="#858585">155</text>
+  <text x="415" y="170" font-family="Consolas, monospace" font-size="12" fill="#6a9955">// Dekripsi catatan secara aman di sisi server</text>
+
+  <!-- Terminal / Debug Console Pane -->
+  <rect x="331" y="328" width="629" height="184" fill="#181818"/>
+  <rect x="331" y="328" width="629" height="26" fill="#252526"/>
+  <text x="345" y="345" font-family="Segoe UI, sans-serif" font-size="11" font-weight="bold" fill="#ffffff">TERMINAL (Next.js: debug server-side)   |   DEBUG CONSOLE</text>
+
+  <text x="345" y="372" font-family="Consolas, monospace" font-size="11" fill="#4ec9b0">Debugger listening on ws://127.0.0.1:9229/9f8e1a2c-44b0-4f7c-91a3-0c812e3d4f5a</text>
+  <text x="345" y="390" font-family="Consolas, monospace" font-size="11" fill="#cccccc">Debugger attached. ▲ Next.js 16.3.8 (- Local: http://localhost:3000)</text>
+  <text x="345" y="410" font-family="Consolas, monospace" font-size="11" fill="#569cd6">prisma:query</text>
+  <text x="435" y="410" font-family="Consolas, monospace" font-size="11" fill="#dcdcaa">SELECT "public"."Analysis"."id", "public"."Analysis"."url", "public"."Analysis"."riskScore",</text>
+  <text x="345" y="426" font-family="Consolas, monospace" font-size="11" fill="#dcdcaa">"public"."Analysis"."isSafe", "public"."Analysis"."recommendation" FROM "public"."Analysis"</text>
+  <text x="345" y="442" font-family="Consolas, monospace" font-size="11" fill="#dcdcaa">ORDER BY "public"."Analysis"."createdAt" DESC OFFSET $1</text>
+  <text x="345" y="460" font-family="Consolas, monospace" font-size="11" fill="#569cd6">prisma:query</text>
+  <text x="435" y="460" font-family="Consolas, monospace" font-size="11" fill="#dcdcaa">SELECT "public"."AnalysisIndicator"."id", "public"."AnalysisIndicator"."analysisId",</text>
+  <text x="345" y="476" font-family="Consolas, monospace" font-size="11" fill="#dcdcaa">"public"."AnalysisIndicator"."type", "public"."AnalysisIndicator"."status" FROM "public"."AnalysisIndicator"</text>
+
+  <!-- Orange Debug Status Bar -->
+  <rect x="0" y="512" width="960" height="28" fill="#cc6633"/>
+  <text x="16" y="530" font-family="Segoe UI, sans-serif" font-size="12" font-weight="bold" fill="#ffffff">⚡ Debugging: Next.js: debug server-side (Paused on breakpoint at app/actions/analysis.ts:153)</text>
+</svg>

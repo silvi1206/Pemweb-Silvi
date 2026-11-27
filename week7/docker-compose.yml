@@ -1,0 +1,141 @@
+# Hardened Docker Compose Configuration for CyberShield
+# Enforces Least Privilege, Container Isolation, Non-Root Users & Network Segmentation
+#
+# PANDUAN PENTING KREDENSIAL DATABASE:
+# 1. DATABASE_URL wajib mengarah ke host internal database: 'db:5432'
+#    Contoh format: postgresql://<user>:<encoded_pwd>@db:5432/<dbname>?schema=public
+# 2. Jika password mengandung karakter khusus (@, :, /, #, %, dll.), password pada DATABASE_URL
+#    wajib di-percent-encode (URL encoded) sebelum dijalankan.
+# 3. Kredensial (user, password, dbname) pada DATABASE_URL HARUS COCOK dengan kredensial
+#    yang didefinisikan pada service 'db' (POSTGRES_USER, POSTGRES_PASSWORD, POSTGRES_DB).
+
+services:
+  # ----------------------------------------------------------------------------
+  # Service: Database Migrator (Runs one-off migrations before app starts)
+  # ----------------------------------------------------------------------------
+  migrator:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: migrator
+    container_name: cybershield-migrator
+    restart: "no"
+    environment:
+      DATABASE_URL: ${DATABASE_URL:?DATABASE_URL must be provided}
+    depends_on:
+      db:
+        condition: service_healthy
+    networks:
+      - cybershield-net
+    cap_drop:
+      - ALL
+    security_opt:
+      - "no-new-privileges:true"
+    read_only: true
+    tmpfs:
+      - /tmp:rw,noexec,nosuid,size=64m,uid=1001,gid=1001
+    deploy:
+      resources:
+        limits:
+          cpus: "0.50"
+          memory: 256M
+        reservations:
+          cpus: "0.10"
+          memory: 64M
+
+  # ----------------------------------------------------------------------------
+  # Service: Application Web Server (Next.js Hardened Production Runner)
+  # ----------------------------------------------------------------------------
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: runner
+    container_name: cybershield-app
+    restart: unless-stopped
+    ports:
+      - "3000:3000"
+    environment:
+      NODE_ENV: production
+      PORT: 3000
+      DATABASE_URL: ${DATABASE_URL:?DATABASE_URL must be provided}
+      AEAD_ENCRYPTION_KEY_HEX: ${AEAD_ENCRYPTION_KEY_HEX:?AEAD_ENCRYPTION_KEY_HEX must be provided}
+      APP_ORIGIN: ${APP_ORIGIN:?APP_ORIGIN must be provided}
+      SESSION_SECRET: ${SESSION_SECRET:?SESSION_SECRET must be provided}
+    depends_on:
+      db:
+        condition: service_healthy
+      migrator:
+        condition: service_completed_successfully
+    networks:
+      - cybershield-net
+    # Hardening: Drop all Linux capabilities
+    cap_drop:
+      - ALL
+    # Hardening: Prevent privilege escalation via setuid/setgid binaries
+    security_opt:
+      - "no-new-privileges:true"
+    # Hardening: Immutable root filesystem
+    read_only: true
+    # Hardening: In-memory mounts for necessary writable directories (UID/GID 1001 nextjs)
+    tmpfs:
+      - /tmp:rw,noexec,nosuid,size=64m,uid=1001,gid=1001
+      - /app/.next/cache:rw,noexec,nosuid,size=256m,uid=1001,gid=1001
+    # Resource limiting
+    deploy:
+      resources:
+        limits:
+          cpus: "1.50"
+          memory: 1024M
+        reservations:
+          cpus: "0.25"
+          memory: 256M
+
+  # ----------------------------------------------------------------------------
+  # Service: PostgreSQL Database
+  # ----------------------------------------------------------------------------
+  db:
+    image: postgres:16-alpine
+    container_name: cybershield-db
+    restart: unless-stopped
+    # Keamanan Jaringan: Port 5432 sengaja TIDAK dipublikasikan ke host (no ports mapping)
+    # Database hanya dapat dijangkau oleh internal Docker network.
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER:-cybershield}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?POSTGRES_PASSWORD must be provided}
+      POSTGRES_DB: ${POSTGRES_DB:-cybershield}
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    networks:
+      - cybershield-net
+    # Hardening: Drop high-risk capabilities without breaking official entrypoint (chown/setuid/setgid)
+    cap_drop:
+      - NET_RAW
+      - MKNOD
+      - AUDIT_WRITE
+    # Hardening: Prevent privilege escalation
+    security_opt:
+      - "no-new-privileges:true"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-cybershield} -d ${POSTGRES_DB:-cybershield}"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 10s
+    deploy:
+      resources:
+        limits:
+          cpus: "1.00"
+          memory: 512M
+        reservations:
+          cpus: "0.20"
+          memory: 128M
+
+networks:
+  cybershield-net:
+    driver: bridge
+    internal: false # bridge untuk akses HTTP app ke internet/klien luar
+
+volumes:
+  pgdata:
+    driver: local

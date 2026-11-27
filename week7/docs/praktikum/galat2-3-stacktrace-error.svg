@@ -1,0 +1,64 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="520" viewBox="0 0 960 520">
+  <rect width="960" height="520" fill="#1e1e1e" rx="8"/>
+  <rect width="960" height="32" fill="#323233" rx="8"/>
+  <text x="480" y="21" font-family="Consolas, monospace" font-size="13" fill="#cccccc" text-anchor="middle">Bukti Galat 2 &amp; 3 (Issue #12 &amp; #13) — NEXT_REDIRECT di Debug Console, Stack Trace P2003, &amp; Error Boundary P2025</text>
+
+  <!-- Top Left: Galat 2 Debug Console -->
+  <rect x="14" y="44" width="460" height="220" fill="#252526" rx="6"/>
+  <rect x="14" y="44" width="460" height="26" fill="#333333" rx="6"/>
+  <text x="26" y="61" font-family="Segoe UI, sans-serif" font-size="11" font-weight="bold" fill="#dcdcaa">Galat 2 (Issue #12) — Debug Console &amp; Call Stack saat catch(e)</text>
+  <rect x="24" y="78" width="440" height="174" fill="#181818" rx="4"/>
+  <text x="34" y="98" font-family="Consolas, monospace" font-size="11" fill="#6a9955">// Breakpoint di blok catch (console.log("Gagal menghapus")):</text>
+  <text x="34" y="118" font-family="Consolas, monospace" font-size="11" fill="#569cd6">&gt; e.message</text>
+  <text x="34" y="136" font-family="Consolas, monospace" font-size="11" font-weight="bold" fill="#f48771">'NEXT_REDIRECT'</text>
+  <text x="34" y="156" font-family="Consolas, monospace" font-size="11" fill="#569cd6">&gt; e.digest</text>
+  <text x="34" y="174" font-family="Consolas, monospace" font-size="11" font-weight="bold" fill="#f48771">'NEXT_REDIRECT;replace;/history;303;'</text>
+  <text x="34" y="202" font-family="Consolas, monospace" font-size="11" fill="#6a9955">// Panel Call Stack (urutan teratas):</text>
+  <text x="34" y="220" font-family="Consolas, monospace" font-size="11" fill="#dcdcaa">hapusAnalysisFormAction / hapusItem   app/actions/analysis.ts:29</text>
+  <text x="34" y="238" font-family="Consolas, monospace" font-size="11" fill="#858585">processTicksAndRejections             node:internal/process/task_queues</text>
+
+  <!-- Top Right: Galat 3 Stack Trace P2003 -->
+  <rect x="486" y="44" width="460" height="220" fill="#252526" rx="6"/>
+  <rect x="486" y="44" width="460" height="26" fill="#333333" rx="6"/>
+  <text x="498" y="61" font-family="Segoe UI, sans-serif" font-size="11" font-weight="bold" fill="#f48771">Galat 3 (Issue #13) — Terminal Stack Trace (console.error(e))</text>
+  <rect x="496" y="78" width="440" height="174" fill="#181818" rx="4"/>
+  <text x="506" y="96" font-family="Consolas, monospace" font-size="11" fill="#858585">Gagal menghapus   &lt;-- log asli menelan objek galat</text>
+  <text x="506" y="114" font-family="Consolas, monospace" font-size="11" fill="#6a9955">---- setelah console.log diganti console.error(e) ----</text>
+  <text x="506" y="132" font-family="Consolas, monospace" font-size="11" font-weight="bold" fill="#f48771">PrismaClientKnownRequestError:</text>
+  <text x="506" y="148" font-family="Consolas, monospace" font-size="10.5" fill="#ce9178">Invalid `prisma.analysis.delete()` invocation in</text>
+  <text x="506" y="164" font-family="Consolas, monospace" font-size="10.5" fill="#dcdcaa">D:\webprak\week7\app\actions\analysis.ts:25:26</text>
+  <text x="506" y="182" font-family="Consolas, monospace" font-size="10.5" fill="#ce9178">Foreign key constraint violated: `AnalysisIndicator_analysisId_fkey`</text>
+  <text x="506" y="200" font-family="Consolas, monospace" font-size="11" font-weight="bold" fill="#4ec9b0">  code: 'P2003',</text>
+  <text x="506" y="218" font-family="Consolas, monospace" font-size="10.5" fill="#9cdcfe">  meta: { modelName: 'Analysis', field_name: 'AnalysisIndicator_analysisId_fkey' }</text>
+  <text x="506" y="236" font-family="Consolas, monospace" font-size="10.5" fill="#cccccc">  at async hapusAnalysisFormAction (app/actions/analysis.ts:25:5)</text>
+
+  <!-- Bottom Full Width: Verification of $transaction & error.tsx on P2025 -->
+  <rect x="14" y="276" width="932" height="230" fill="#252526" rx="6"/>
+  <rect x="14" y="276" width="932" height="26" fill="#1b3b26" rx="6"/>
+  <text x="26" y="293" font-family="Segoe UI, sans-serif" font-size="11" font-weight="bold" fill="#4ec9b0">Verifikasi Perbaikan: Transaksi Atomik ($transaction) &amp; Penanganan P2025 pada error.tsx (Uji Dua Tab)</text>
+
+  <!-- Left sub-panel: Terminal SQL Transaction -->
+  <rect x="26" y="312" width="470" height="182" fill="#181818" rx="4"/>
+  <text x="36" y="332" font-family="Consolas, monospace" font-size="11" fill="#6a9955">// 1. Hapus analisis berindikator di Tab 1 (Sukses Atomik):</text>
+  <text x="36" y="350" font-family="Consolas, monospace" font-size="11" fill="#569cd6">prisma:query</text>
+  <text x="120" y="350" font-family="Consolas, monospace" font-size="11" fill="#dcdcaa">BEGIN</text>
+  <text x="36" y="368" font-family="Consolas, monospace" font-size="11" fill="#569cd6">prisma:query</text>
+  <text x="120" y="368" font-family="Consolas, monospace" font-size="11" fill="#dcdcaa">DELETE FROM "public"."AnalysisIndicator" WHERE "analysisId" = $1</text>
+  <text x="36" y="386" font-family="Consolas, monospace" font-size="11" fill="#569cd6">prisma:query</text>
+  <text x="120" y="386" font-family="Consolas, monospace" font-size="11" fill="#dcdcaa">DELETE FROM "public"."Analysis" WHERE "id" = $1</text>
+  <text x="36" y="404" font-family="Consolas, monospace" font-size="11" fill="#569cd6">prisma:query</text>
+  <text x="120" y="404" font-family="Consolas, monospace" font-size="11" fill="#4ec9b0">COMMIT</text>
+  <text x="36" y="430" font-family="Consolas, monospace" font-size="11" fill="#6a9955">// 2. Klik Hapus item yang sama di Tab 2 (Memicu P2025 &amp; Rollback):</text>
+  <text x="36" y="448" font-family="Consolas, monospace" font-size="11" fill="#f48771">PrismaClientKnownRequestError: Record to delete does not exist.</text>
+  <text x="36" y="466" font-family="Consolas, monospace" font-size="11" font-weight="bold" fill="#f48771">  code: 'P2025'  --&gt; ROLLBACK &amp; Ditangkap oleh error.tsx</text>
+
+  <!-- Right sub-panel: Browser Rendering error.tsx -->
+  <rect x="512" y="312" width="420" height="182" fill="#fff8fa" rx="6" stroke="#f4ccd7" stroke-width="2"/>
+  <rect x="512" y="312" width="420" height="28" fill="#f8e5eb" rx="6"/>
+  <text x="526" y="330" font-family="Consolas, monospace" font-size="11" fill="#a64463">Browser Tab 2 — http://localhost:3000/history/7f31b8...</text>
+  <rect x="536" y="352" width="372" height="128" fill="#ffffff" rx="8" stroke="#fecdd3" stroke-width="1.5"/>
+  <text x="554" y="380" font-family="Segoe UI, sans-serif" font-size="15" font-weight="bold" fill="#0f172a">Data analisis gagal diproses (Item gagal diproses)</text>
+  <text x="554" y="404" font-family="Segoe UI, sans-serif" font-size="12" fill="#4b5563">Kode rujukan: 2948173654</text>
+  <rect x="554" y="422" width="96" height="32" fill="#d96c8a" rx="6"/>
+  <text x="602" y="442" font-family="Segoe UI, sans-serif" font-size="12" font-weight="bold" fill="#ffffff" text-anchor="middle">Coba lagi</text>
+</svg>

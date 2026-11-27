@@ -1,0 +1,21 @@
+================================================================================
+BUKTI AUDIT LYNIS SETELAH HARDENING
+STATUS: NOT TESTED - MANUAL (Menunggu Eksekusi Manual oleh Pemilik Project)
+================================================================================
+
+Target Mesin: Virtual Machine Produksi CyberShield
+Waktu Audit: [Akan diisi saat pengujian manual sesudah hardening SSH & OS]
+Auditor: Pemilik Project
+
+Panduan Perintah Eksekusi:
+  sudo lynis audit system --quick > security/evidence/lynis-after.txt
+
+Target Kepatuhan Minimum:
+  - Hardening Index: >= 70
+  - PasswordAuthentication: no
+  - PubkeyAuthentication: yes
+  - PermitRootLogin: no
+
+Catatan:
+File ini akan digantikan dengan log keluaran mentah aktual dari lynis
+sesudah seluruh langkah hardening pada security/vm-hardening.md selesai diterapkan.

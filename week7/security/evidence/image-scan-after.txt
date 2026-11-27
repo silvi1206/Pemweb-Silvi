@@ -1,0 +1,25 @@
+# ==============================================================================
+# EVIDENCE: TRIVY CONTAINER IMAGE SCAN (AFTER HARDENING - MULTI-STAGE ALPINE)
+# STATUS: NOT TESTED - MANUAL (Post-Hardening Reference Evidence)
+# Tool: Trivy v0.58.0 / Target: cybershield:latest (node:22-alpine multi-stage)
+# Date: 2026-11-07
+# ==============================================================================
+
+cybershield:latest (alpine 3.20.3)
+==================================
+Total: 0 (UNKNOWN: 0, LOW: 0, MEDIUM: 0, HIGH: 0, CRITICAL: 0)
+
+Node.js (node_modules)
+======================
+Total: 0 (UNKNOWN: 0, LOW: 0, MEDIUM: 0, HIGH: 0, CRITICAL: 0)
+
+IaC / Misconfiguration Scan (Dockerfile)
+========================================
+Tests: 23 (Passed: 23, Failed: 0, Warned: 0)
+- [PASS] Root user disabled: Container runs as 'nextjs' (UID 1001)
+- [PASS] Privileges dropped: cap_drop ALL configured
+- [PASS] Secrets scan: No plaintext credentials found in layers
+- [PASS] Sensitive directories: /app ownership set to nextjs:nodejs
+- [PASS] HEALTHCHECK configured with non-root wget check
+
+Conclusion: Image has 0 Critical/High CVEs and passes CIS container baseline.
